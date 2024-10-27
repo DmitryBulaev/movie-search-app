@@ -1,5 +1,6 @@
 const searchSectionNode = document.getElementById("searchSection");
 const inputNode = document.getElementById("input");
+const movieListNode = document.getElementById("movieList");
 
 // const params = new URLSearchParams(location.search);
 searchSectionNode.addEventListener("submit", (event) => {
@@ -14,8 +15,11 @@ searchSectionNode.addEventListener("submit", (event) => {
   fetch(`http://www.omdbapi.com/?s=${filmRequest}&apikey=218d497b`)
     .then((response) => response.json())
     .then((data) => {
-      console.log(filmRequest);
-      console.log(data);
+      const films = data.Search;
+      films.forEach((film) => {
+        movieListNode.innerHTML = `<li>${film.Title}</li>`;
+      });
+      console.log(data.Search);
     });
 
   cleatInput(inputNode);
@@ -23,4 +27,5 @@ searchSectionNode.addEventListener("submit", (event) => {
 
 function cleatInput(input) {
   input.value = "";
+  input.focus();
 }
