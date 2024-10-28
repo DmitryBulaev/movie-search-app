@@ -1,29 +1,40 @@
 const searchSectionNode = document.getElementById("searchSection");
 const inputNode = document.getElementById("input");
-const movieListNode = document.getElementById("movieList");
+const filmListNode = document.getElementById("filmList");
 
 // const params = new URLSearchParams(location.search);
 searchSectionNode.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const filmRequest = inputNode.value;
+  const userReauest = inputNode.value;
 
-  if (!filmRequest) {
+  if (!userReauest) {
     return;
   }
 
-  fetch(`http://www.omdbapi.com/?s=${filmRequest}&apikey=218d497b`)
+  addFilmsFromApi(userReauest);
+
+  cleatInput(inputNode);
+});
+
+function addFilmsFromApi(userReauest) {
+  fetch(`http://www.omdbapi.com/?s=${userReauest}&apikey=218d497b`)
     .then((response) => response.json())
     .then((data) => {
       const films = data.Search;
       films.forEach((film) => {
-        movieListNode.innerHTML = `<li>${film.Title}</li>`;
+        const filmItem = document.createElement("li");
+        filmItem.className = "film-item";
+        filmItem.innerHTML = `<img class='film-item__poster' src=${film.Poster} alt='Постер фильма' />
+                              <div class='description-wrapper'>
+                                <span class="film-item__title">${film.Title}</span>
+                                <span class="film-item__year">${film.Year}</span>
+                                <span class="film-item__type">${film.Type}</span>
+                              </div>`;
+        filmListNode.insertAdjacentElement("beforeend", filmItem);
       });
-      console.log(data.Search);
     });
-
-  cleatInput(inputNode);
-});
+}
 
 function cleatInput(input) {
   input.value = "";
