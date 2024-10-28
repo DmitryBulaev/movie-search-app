@@ -9,7 +9,7 @@ body {
 
 .form-wrapper {
   margin: auto;
-  width: 750px;
+  width: 800px;
 }
 
 .search-section {
@@ -27,6 +27,7 @@ body {
   border: none;
   border-radius: 20px;
   font-family: inherit;
+  color: rgb(203, 195, 184);
   background-color: rgb(75, 74, 85);
 }
 
@@ -43,4 +44,54 @@ body {
 
 .search-section__button:hover {
   opacity: 0.6;
+}
+
+.film-list {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.film-item {
+  position: relative;
+  padding: 30px 20px 20px 20px;
+  width: 800px;
+  height: 300px;
+  border-radius: 15px;
+  background-color: rgb(75, 74, 85);
+  cursor: pointer;
+}
+
+.film-item:hover {
+  background: linear-gradient(150deg, black, rgb(35, 25, 80), rgb(115, 24, 125));
+}
+
+.film-item__poster {
+  width: 170px;
+  height: 248px;
+}
+
+.description-wrapper {
+  position: absolute;
+  left: 210px;
+  top: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.film-item__title {
+  font-size: 45px;
+  color: rgb(203, 195, 184);
+}
+
+.film-item__year {
+  font-size: 25px;
+  color: rgb(203, 195, 184);
+}
+
+.film-item__type {
+  font-size: 20px;
+  color: rgb(203, 195, 184);
 }
