@@ -1,3 +1,5 @@
+const ERROR_MESSAGE = "Такого нет. Попробуйте ещё раз";
+
 const searchSectionNode = document.getElementById("searchSection");
 const inputNode = document.getElementById("input");
 const filmListNode = document.getElementById("filmList");
@@ -33,6 +35,12 @@ function addFilmsFromApi(userReauest) {
                               </div>`;
         filmListNode.insertAdjacentElement("beforeend", filmItem);
       });
+    })
+    .catch((err) => {
+      console.log(err);
+      filmListNode.innerHTML = `<li class="error-message">
+                                  <span class="error-message__text"> ${ERROR_MESSAGE}</span>
+                                </li> `;
     });
 }
 
