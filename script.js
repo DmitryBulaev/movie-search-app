@@ -24,17 +24,18 @@ function addFilmsFromApi(userReauest) {
     .then((response) => response.json())
     .then((data) => {
       const films = data.Search;
-      films.forEach((film) => {
-        const filmItem = document.createElement("li");
-        filmItem.className = "film-item";
-        filmItem.innerHTML = `<img class='film-item__poster' src=${film.Poster} alt='Постер фильма' />
-                              <div class='description-wrapper'>
-                                <span class="film-item__title">${film.Title}</span>
-                                <span class="film-item__year">${film.Year}</span>
-                                <span class="film-item__type">${film.Type}</span>
-                              </div>`;
-        filmListNode.insertAdjacentElement("beforeend", filmItem);
+      const result = films.map((film) => {
+        return `
+                <li class='film-item'>
+                  <img class='film-item__poster' src=${film.Poster} alt='Постер фильма' />
+                  <div class='description-wrapper'>
+                    <span class="film-item__title">${film.Title}</span>
+                    <span class="film-item__year">${film.Year}</span>
+                    <span class="film-item__type">${film.Type}</span>
+                  </div>
+                </li>`;
       });
+      filmListNode.innerHTML = result.join("");
     })
     .catch((err) => {
       console.log(err);
