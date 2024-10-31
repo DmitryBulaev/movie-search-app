@@ -3,8 +3,10 @@ const ERROR_MESSAGE = "Такого нет. Попробуйте ещё раз";
 const searchSectionNode = document.getElementById("searchSection");
 const inputNode = document.getElementById("input");
 const filmListNode = document.getElementById("filmList");
+const filmPreviewNode = document.getElementById("filmPreview");
+const wrapperNode = document.getElementById("wrapper");
+const filmPageNode = document.getElementById("filmPage");
 
-// const params = new URLSearchParams(location.search);
 searchSectionNode.addEventListener("submit", (event) => {
   event.preventDefault();
 
@@ -26,7 +28,7 @@ function addFilmsFromApi(userReauest) {
       const films = data.Search;
       const result = films.map((film) => {
         return `
-                <li class='film-item'>
+                <li id=${film.imdbID} data-class=filmItem class='film-item'>
                   <img class='film-item__poster' src=${film.Poster} alt='Постер фильма' />
                   <div class='description-wrapper'>
                     <span class="film-item__title">${film.Title}</span>
@@ -44,6 +46,26 @@ function addFilmsFromApi(userReauest) {
                                 </li> `;
     });
 }
+
+// function getMovieId() {
+filmListNode.addEventListener("click", (event) => {
+  const movieElement = event.target.closest("[data-class=filmItem]");
+  if (event.target.dataset.class !== "filmItem") return;
+
+  const id = movieElement.id;
+
+  fetch(`http://www.omdbapi.com/?i=${id}&apikey=218d497b`)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(1);
+      wrapperNode.classList.toggle("display-none");
+      filmPageNode.classList.toggle("display-none");
+      filmPreviewNode;
+      const filmProfile = `
+                          <div class></div>`;
+    });
+});
+// }
 
 function cleatInput(input) {
   input.value = "";
