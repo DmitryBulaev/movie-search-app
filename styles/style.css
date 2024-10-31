@@ -7,6 +7,16 @@ body {
   background-attachment: fixed;
 }
 
+.display-none {
+  display: none;
+}
+
+.film-page {
+  margin: auto;
+  width: 300px;
+  background-color: antiquewhite;
+}
+
 .form-wrapper {
   margin-bottom: 50px;
   margin-left: auto;
@@ -78,14 +88,14 @@ body {
 .description-wrapper {
   position: absolute;
   left: 210px;
-  top: 50px;
+  top: 26px;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 25px;
 }
 
 .film-item__title {
-  font-size: 45px;
+  font-size: 40px;
   color: rgb(203, 195, 184);
 }
 
