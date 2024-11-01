@@ -1,5 +1,5 @@
 body {
-  padding-top: 90px;
+  padding-top: 50px;
   font-family: "Oxanium", sans-serif;
   background: linear-gradient(150deg, black, rgb(35, 25, 80), rgb(115, 24, 125));
   background-repeat: no-repeat;
@@ -7,14 +7,8 @@ body {
   background-attachment: fixed;
 }
 
-.display-none {
-  display: none;
-}
-
-.film-page {
-  margin: auto;
-  width: 300px;
-  background-color: antiquewhite;
+.wrapper {
+  margin-top: 40px;
 }
 
 .form-wrapper {
@@ -123,4 +117,71 @@ body {
   left: 8%;
   font-size: 30px;
   color: rgb(203, 195, 184);
+}
+
+.display-none {
+  display: none;
+}
+
+.film-page__back-button {
+  margin-top: 30px;
+  margin-left: 30px;
+  width: 250px;
+  font-family: inherit;
+  font-size: 32px;
+  border-radius: 15px;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.film-page__back-button:hover {
+  text-decoration: underline;
+}
+
+.film-page {
+  position: relative;
+  margin: auto;
+  width: 900px;
+  height: 700px;
+  background-color: rgb(75, 74, 85);
+  border-radius: 30px;
+}
+
+.film-page__poster {
+  position: absolute;
+  top: 140px;
+  left: 40px;
+  height: 390px;
+  width: 270px;
+}
+
+.profile-wrapper {
+  position: absolute;
+  top: 140px;
+  padding-right: 30px;
+  left: 350px;
+}
+
+.film-page__title {
+  margin-bottom: 40px;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.film-page__profile {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.film-page__profile-item {
+  font-size: 25px;
+  color: black;
+}
+
+.film-page__profile-item_blue {
+  font-size: 25px;
+  color: rgb(179, 181, 222);
+  display: inline-block;
 }
