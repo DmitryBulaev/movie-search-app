@@ -26,7 +26,7 @@ function addFilmsFromApi(userReauest) {
     .then((data) => {
       const films = data.Search;
       const result = films.map((film) => {
-        return `<li id=${film.imdbID} data-class=filmItem class='film-item'>
+        return `<li id=${film.imdbID} data-class='filmItem' class='film-item'>
                   <img class='film-item__poster' src=${film.Poster} alt='Постер фильма' />
                   <div class='description-wrapper'>
                     <span class="film-item__title">${film.Title}</span>
@@ -44,7 +44,6 @@ function addFilmsFromApi(userReauest) {
     });
 }
 
-// function getMovieId() {
 filmListNode.addEventListener("click", (event) => {
   const movieElement = event.target.closest("[data-class=filmItem]");
   if (event.target.dataset.class !== "filmItem") return;
@@ -56,7 +55,7 @@ filmListNode.addEventListener("click", (event) => {
     .then((data) => {
       wrapperNode.classList.toggle("display-none");
       filmPageNode.classList.toggle("display-none");
-      filmPageNode.innerHTML = `<button id='backButton' class='film-page__back-button'>← Back to list</button>
+      filmPageNode.innerHTML = `<button data-class='backButton' class='film-page__back-button'>← Back to list</button>
                                 <img class='film-page__poster' src=${data.Poster} alt='Постер фильма' />
                                 <div class='profile-wrapper'>
                                   <h2 class='film-page__title'>${data.Title}</h2>
@@ -72,13 +71,13 @@ filmListNode.addEventListener("click", (event) => {
                                   </ul>
                                 </div>`;
     });
-  const backButton = document.getElementById("backButton");
-  backButton.addEventListener("click", () => {
-    wrapperNode.classList.toggle("display-none");
-    filmPageNode.classList.toggle("display-none");
-  });
 });
-// }
+
+filmPageNode.addEventListener("click", (event) => {
+  if (event.target.dataset.class !== "backButton") return;
+  wrapperNode.classList.toggle("display-none");
+  filmPageNode.classList.toggle("display-none");
+});
 
 function cleatInput(input) {
   input.value = "";
