@@ -45,16 +45,18 @@ function addFilmsFromApi(userReauest) {
 }
 
 filmListNode.addEventListener("click", (event) => {
-  const movieElement = event.target;
-  if (movieElement.matches(".film-item")) {
-    const id = movieElement.id;
+  const movieElement = event.target.closest("li");
+  if (!movieElement) return;
+  if (!filmListNode.contains(movieElement)) return;
 
-    fetch(`http://www.omdbapi.com/?i=${id}&apikey=218d497b`)
-      .then((response) => response.json())
-      .then((data) => {
-        wrapperNode.classList.toggle("display-none");
-        filmPageNode.classList.toggle("display-none");
-        filmPageNode.innerHTML = `<button data-class='backButton' class='film-page__back-button'>← Back to list</button>
+  const id = movieElement.id;
+
+  fetch(`http://www.omdbapi.com/?i=${id}&apikey=218d497b`)
+    .then((response) => response.json())
+    .then((data) => {
+      wrapperNode.classList.toggle("display-none");
+      filmPageNode.classList.toggle("display-none");
+      filmPageNode.innerHTML = `<button data-class='backButton' class='film-page__back-button'>← Back to list</button>
                                   <img class='film-page__poster' src=${data.Poster} alt='Постер фильма' />
                                   <div class='profile-wrapper'>
                                     <h2 class='film-page__title'>${data.Title}</h2>
@@ -69,8 +71,7 @@ filmListNode.addEventListener("click", (event) => {
                                       <li class='film-page__profile-item'>Актёры: <span class='film-page__profile-item_blue'>${data.Actors}</span></li>
                                     </ul>
                                   </div>`;
-      });
-  }
+    });
 });
 
 filmPageNode.addEventListener("click", (event) => {
